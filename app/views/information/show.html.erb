@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Body:</b>
+  <%= @information.body %>
+</p>
+
+<p>
+  <b>Posted at:</b>
+  <%= @information.posted_at %>
+</p>
+
+<p>
+  <b>Enable:</b>
+  <%= @information.enable %>
+</p>
+
+
+<%= link_to 'Edit', edit_information_path(@information) %> |
+<%= link_to 'Back', information_index_path %>

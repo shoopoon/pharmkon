@@ -1,0 +1,38 @@
+<%- model_class = Information -%>
+<div class="page-header">
+  <h1>お知らせ一覧</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>投稿日</th>
+      <th>使用可能</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @information.each do |information| %>
+      <tr>
+        <td><%= link_to information.id, admin_information_path(information) %></td>
+        <td><%= information.body %></td>
+        <td><%= information.posted_at %></td>
+        <td><%= information.enable ? "○" : "×" %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_admin_information_path(information), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      admin_information_path(information),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_admin_information_path,
+            :class => 'btn btn-primary' %>

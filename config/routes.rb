@@ -1,5 +1,4 @@
 PharmkonR::Application.routes.draw do
-
   devise_for :admin_users, :class_name => "Admin::User", :controllers => {
     :sessions      => "admin/user/sessions"
   }
@@ -8,7 +7,7 @@ PharmkonR::Application.routes.draw do
     :registrations => "user/registrations",
   }
 
-  root :to => "students#index", :as => "user_root_path"
+  root :to => "top#index", :as => "user_root_path"
 
   resources :assign, only: [:index, :show] do
     collection do
@@ -17,7 +16,9 @@ PharmkonR::Application.routes.draw do
     end
   end
 
+  resources :top, only: [:index]
   resources :students, only: [:index, :show]
+  resources :information, only: [:index]
 
   scope "admin" do
     root :to => "admin/top#index", :as => "admin_user_root_path"
@@ -25,6 +26,7 @@ PharmkonR::Application.routes.draw do
   namespace :admin do
     resources :top
     resources :labolatories
+    resources :information
   end
 
   # The priority is based upon order of creation:
